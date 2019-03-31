@@ -48,14 +48,37 @@ public class FirstTest {
 
         waitForElementAndSendKeys(
                 By.id("org.wikipedia:id/search_src_text"),
-                "Java",
+                "Linux",
                 "Cannot find search input",
                 5
         );
 
-        for (int i = 0; i < 7; i++) {
-            checkForWordPresent(i, "Java");
-        }
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_list']/*[@index='0']" +
+                        "//*[@resource-id='org.wikipedia:id/page_list_item_title']"),
+                "Cannot find а single topic searching by 'Linux'",
+                6
+        );
+
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_list']/*[@index='1']" +
+                        "//*[@resource-id='org.wikipedia:id/page_list_item_title']"),
+                "Cannot find more than one topic searching by 'Linux'",
+                5
+        );
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_close_btn"),
+                "Cannot find X to cancel search",
+                5
+        );
+
+        waitForElementNotPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@index='0']"),
+                "Topics is still present on the page",
+                5
+        );
+
 
     }
 //
@@ -161,22 +184,5 @@ public class FirstTest {
         WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
         element.clear();
         return element;
-    }
-
-    private void checkForWordPresent(int num, String word) {
-        WebElement title_element = waitForElementPresent(
-                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_list']/*[@index='"
-                        + num + "']//*[@resource-id='org.wikipedia:id/page_list_item_title']"),
-                "Cannot find article title by index = " + num,
-                6
-        );
-
-        String article_title = title_element.getAttribute("text");
-        //System.out.println(article_title);
-
-        Assert.assertTrue(
-                "Article title by index " + num + "does not contain the word '" + word + "'",
-                article_title.contains(word)
-        );
     }
 }
