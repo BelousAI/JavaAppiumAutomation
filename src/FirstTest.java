@@ -30,7 +30,7 @@ public class FirstTest {
         capabilities.setCapability("appPackage", "org.wikipedia");
         capabilities.setCapability("appActivity", ".main.MainActivity");
         capabilities.setCapability("app",
-                "C://Users//user//Documents//GitHub//JavaAppiumAutomation//apks/org.wikipedia.apk");
+                "/Users/anton/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
@@ -136,9 +136,9 @@ public class FirstTest {
         TouchAction action = new TouchAction(driver);
         Dimension size = driver.manage().window().getSize();
         int x = size.width / 2;
-        int startY = (int) (size.height * 0.85);
-        int endY = (int) (size.height * 0.15);
+        int startY = (int) (size.height * 0.8);
+        int endY = (int) (size.height * 0.2);
 
-        action.press(x, startY).waitAction(timeOfSwipe).moveTo(x, endY).perform();
+        action.press(x, startY).waitAction(timeOfSwipe).moveTo(x, endY).release().perform();
     }
 }
