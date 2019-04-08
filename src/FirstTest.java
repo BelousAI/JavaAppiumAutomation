@@ -30,7 +30,7 @@ public class FirstTest {
         capabilities.setCapability("appPackage", "org.wikipedia");
         capabilities.setCapability("appActivity", ".main.MainActivity");
         capabilities.setCapability("app",
-                "/Users/anton/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
+                "C:/Users/user/Documents/GitHub/JavaAppiumAutomation/apks/org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
@@ -74,14 +74,14 @@ public class FirstTest {
 
         waitForElementAndSendKeys(
                 By.xpath("//*[contains(@text, 'Search…')]"),
-                "Java",
+                "Appium",
                 "Cannot find search input",
                 5
         );
 
         waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
-                "Cannot find 'Object-oriented programming language' topic searching by 'Java'",
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='Appium']"),
+                "Cannot find Appium article in search",
                 6
         );
 
@@ -91,11 +91,11 @@ public class FirstTest {
                 15
         );
 
-        swipeUp(2000);
-        swipeUp(2000);
-        swipeUp(2000);
-        swipeUp(2000);
-        swipeUp(2000);
+        swipeUpToFindElement(
+                By.xpath("//*[@text='View page in browser']"),
+                "Cannot find the end of the article",
+                20
+        );
     }
 
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
@@ -140,5 +140,24 @@ public class FirstTest {
         int endY = (int) (size.height * 0.2);
 
         action.press(x, startY).waitAction(timeOfSwipe).moveTo(x, endY).release().perform();
+    }
+
+    protected void swipeUpQuick() {
+        swipeUp(200);
+    }
+
+    protected void swipeUpToFindElement(By by, String error_message, int max_swipes) {
+        int already_swiped = 0;
+
+        while (driver.findElements(by).size() == 0) {
+
+            if (already_swiped > max_swipes) {
+                waitForElementPresent(by, "Cannot find element by swiping up." + error_message, 0);
+                return;
+            }
+
+            swipeUpQuick();
+            ++already_swiped;
+        }
     }
 }
