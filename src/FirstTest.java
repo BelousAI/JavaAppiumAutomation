@@ -30,7 +30,7 @@ public class FirstTest {
         capabilities.setCapability("appPackage", "org.wikipedia");
         capabilities.setCapability("appActivity", ".main.MainActivity");
         capabilities.setCapability("app",
-                "C:/Users/user/Documents/GitHub/JavaAppiumAutomation/apks/org.wikipedia.apk");
+                "/Users/anton/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
@@ -126,7 +126,7 @@ public class FirstTest {
         );
 
         waitForElementAndClick(
-                By.xpath("//android.widget.ImageView[@content_desc='More options']"),
+                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
                 "Cannot find button to open article options",
                 5
         );
@@ -149,9 +149,11 @@ public class FirstTest {
                 5
         );
 
+        String name_of_folder = "Learning programming";
+
         waitForElementAndSendKeys(
                 By.id("org.wikipedia:id/text_input"),
-                "Learning programming",
+                name_of_folder,
                 "Cannot put text into article folder input",
                 5
         );
@@ -163,21 +165,21 @@ public class FirstTest {
         );
 
         waitForElementAndClick(
-                By.xpath("//android.widget.ImageButton[@content_desc='Navigate up']"),
+                By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
                 "Cannot close article, cannot find X link",
                 5
         );
 
         waitForElementAndClick(
-                By.xpath("//android.widget.FrameLayout[@content_desc='My lists']"),
+                By.xpath("//android.widget.FrameLayout[@content-desc='My lists']"),
                 "Cannot find navigation button to My list",
                 5
         );
 
         waitForElementAndClick(
-                By.xpath("//*[@text='Java (programming language)']"),
+                By.xpath("//*[@text='" + name_of_folder + "']"),
                 "Cannot find created folder",
-                5
+                6
         );
 
         swipeElementToLeft(
@@ -275,7 +277,7 @@ public class FirstTest {
         TouchAction action = new TouchAction(driver);
         action
                 .press(right_x, middle_y)
-                .waitAction(150)
+                .waitAction(300)
                 .moveTo(left_x, middle_y)
                 .release()
                 .perform();
