@@ -32,9 +32,10 @@ public class FirstTest {
         capabilities.setCapability("appPackage", "org.wikipedia");
         capabilities.setCapability("appActivity", ".main.MainActivity");
         capabilities.setCapability("app",
-                "/Users/anton/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
+                "C:/Users/user/Documents/GitHub/JavaAppiumAutomation/apks/org.wikipedia.apk");
 
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver.rotate(ScreenOrientation.PORTRAIT);
     }
 
     @After
@@ -308,7 +309,7 @@ public class FirstTest {
                 title_after_rotation
         );
 
-        driver.rotate(ScreenOrientation.PORTRAIT);
+        //driver.rotate(ScreenOrientation.PORTRAIT);
 
         String title_after_second_rotation = waitForElementAndGetAttribute(
                 By.id("org.wikipedia:id/view_page_title_text"),
