@@ -27,6 +27,16 @@ public class FirstTest extends CoreTestCase {
     }
 
     @Test
+    public void testCancelSearch() {
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.initSearchInput();
+        SearchPageObject.waitForCancelButtonToAppear();
+        SearchPageObject.clickCancelSearch();
+        SearchPageObject.waitForCancelButtonToDisappear();
+    }
+
+    @Test
     public void testEqualsSearchText() {
 
         MainPageObject.waitForElementAndClick(
