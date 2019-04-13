@@ -1,5 +1,6 @@
 import lib.CoreTestCase;
 import lib.ui.MainPageObject;
+import lib.ui.SearchPageObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -18,6 +19,15 @@ public class FirstTest extends CoreTestCase {
 
     @Test
     public void testSearch() {
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.initSearchInput();
+        SearchPageObject.typeSearchLine("Java");
+        SearchPageObject.waitForSearchResult("Object-oriented programming language");
+    }
+
+    @Test
+    public void testEqualsSearchText() {
 
         MainPageObject.waitForElementAndClick(
                 By.id("org.wikipedia:id/search_container"),
