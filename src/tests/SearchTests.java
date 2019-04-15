@@ -3,6 +3,7 @@ package tests;
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 public class SearchTests extends CoreTestCase {
 
@@ -49,5 +50,31 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.waitForEmptyResultsLabel();
         SearchPageObject.assertThereIsNoResultOfSearch();
+    }
+
+    @Test
+    public void testFirstTest() {
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.initSearchInput();
+        String search_line = "Linux";
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.waitForSearchResult("Linux");
+        SearchPageObject.waitForSearchResult("Linux kernel");
+        SearchPageObject.waitForCancelButtonToAppear();
+        SearchPageObject.clickCancelSearch();
+        SearchPageObject.assertThereIsNoResultOfSearch();
+
+//        SearchPageObject.waitForElementPresent(
+//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container'][@index='0']"),
+//                "Cannot find а single topic searching by 'Linux'",
+//                6
+//        );
+//
+//        SearchPageObject.waitForElementPresent(
+//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container'][@index='1']"),
+//                "Cannot find more than one topic searching by 'Linux'",
+//                5
+//        );
     }
 }
