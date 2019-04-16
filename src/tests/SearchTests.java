@@ -53,7 +53,7 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
-    public void testFirstTest() {
+    public void testNoResultsAfterCancelingSearch() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
 
         SearchPageObject.initSearchInput();
