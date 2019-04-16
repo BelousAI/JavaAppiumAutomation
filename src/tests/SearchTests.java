@@ -64,17 +64,5 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.waitForCancelButtonToAppear();
         SearchPageObject.clickCancelSearch();
         SearchPageObject.assertThereIsNoResultOfSearch();
-
-//        SearchPageObject.waitForElementPresent(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container'][@index='0']"),
-//                "Cannot find а single topic searching by 'Linux'",
-//                6
-//        );
-//
-//        SearchPageObject.waitForElementPresent(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container'][@index='1']"),
-//                "Cannot find more than one topic searching by 'Linux'",
-//                5
-//        );
     }
 }
