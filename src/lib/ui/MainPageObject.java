@@ -121,6 +121,16 @@ public class MainPageObject {
         }
     }
 
+    public void assertElementPresent(By by, String error_message) {
+        int amount_of_elements = getAmountOfElements(by);
+
+        if (amount_of_elements == 0) {
+            String default_message = "An element '" + by.toString() + "' supposed to be present.";
+            throw new AssertionError(default_message + " " + error_message);
+        }
+
+    }
+
     public String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds) {
         WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
         return element.getAttribute(attribute);

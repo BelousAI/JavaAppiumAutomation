@@ -112,4 +112,7 @@ public class ArticlePageObject extends MainPageObject {
         );
     }
 
+    public void assertTitleElementPresent() {
+        this.assertElementPresent(By.id(TITLE), "We supposed to find element of title");
+    }
 }
