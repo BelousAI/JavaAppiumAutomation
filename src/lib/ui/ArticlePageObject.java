@@ -14,8 +14,7 @@ public class ArticlePageObject extends MainPageObject {
             ADD_TO_MY_LIST_OVERLAY = "org.wikipedia:id/onboarding_button",
             MY_LIST_NAME_INPUT = "org.wikipedia:id/text_input",
             MY_LIST_OK_BUTTON = "//*[@text='OK']",
-            CLOSE_ARTICLE_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']",
-            FOLDER_BY_NAME_TPL = "//*[@text='{FOLDER_NAME}']";
+            CLOSE_ARTICLE_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']";
 
 
     public ArticlePageObject(AppiumDriver driver) {
@@ -29,10 +28,6 @@ public class ArticlePageObject extends MainPageObject {
     public String getArticleTitle() {
         WebElement title_element = waitForTitleElement();
         return title_element.getAttribute("text");
-    }
-
-    private static String getFolderXpathByName(String name_of_folder) {
-        return FOLDER_BY_NAME_TPL.replace("{FOLDER_NAME}", name_of_folder);
     }
 
     public void swipeToFooter() {
@@ -96,12 +91,12 @@ public class ArticlePageObject extends MainPageObject {
                 5
         );
 
-        String folder_name_xpath = getFolderXpathByName(name_of_folder);
-        this.waitForElementAndClick(
-                By.xpath(folder_name_xpath),
-                "Cannot find folder by name " + name_of_folder,
-                6
-        );
+//        String folder_name_xpath = getFolderXpathByName(name_of_folder);
+//        this.waitForElementAndClick(
+//                By.xpath(folder_name_xpath),
+//                "Cannot find folder by name " + name_of_folder,
+//                6
+//        );
     }
 
     public void closeArticle() {

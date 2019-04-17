@@ -128,7 +128,6 @@ public class MainPageObject {
             String default_message = "An element '" + by.toString() + "' supposed to be present.";
             throw new AssertionError(default_message + " " + error_message);
         }
-
     }
 
     public String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds) {

@@ -57,12 +57,14 @@ public class MyListsTests extends CoreTestCase {
 
         ArticlePageObject.waitForTitleElement();
         ArticlePageObject.addSecondArticleToMyList(name_of_folder);
+
+        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
+        MyListsPageObject.openFolderByName(name_of_folder);                     //имя метода не точно описывает, что он делает.
         ArticlePageObject.closeArticle();
 
         NavigationUI NavigationUI = new NavigationUI(driver);
         NavigationUI.clickMyList();
 
-        MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
         MyListsPageObject.openFolderByName(name_of_folder);
         MyListsPageObject.swipeByArticleToDelete(first_article_title);
         MyListsPageObject.waitForArticleToAppearByTitle(second_article_title);
