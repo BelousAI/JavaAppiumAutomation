@@ -5,7 +5,6 @@ import lib.ui.ArticlePageObject;
 import lib.ui.MyListsPageObject;
 import lib.ui.NavigationUI;
 import lib.ui.SearchPageObject;
-import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -57,27 +56,7 @@ public class MyListsTests extends CoreTestCase {
         SearchPageObject.clickByArticleWithSubstring(second_article_title);
 
         ArticlePageObject.waitForTitleElement();
-        //ArticlePageObject.addArticleToMyList(name_of_folder);
-
-
-//        SearchPageObject.waitForElementAndClick(
-//                By.xpath("//android.widget.ImageView[@content-desc='More options']"),
-//                "Cannot find button to open article options",
-//                5
-//        );
-//
-//        SearchPageObject.waitForElementAndClick(
-//                By.xpath("//*[@text='Add to reading list']"),
-//                "Cannot find option to add article to reading list",
-//                5
-//        );
-//
-//        SearchPageObject.waitForElementAndClick(
-//                By.xpath("//*[@resource-id='org.wikipedia:id/item_container']//*[@text='" + name_of_folder + "']"),
-//                "Cannot find folder by " + name_of_folder,
-//                5
-//        );
-
+        ArticlePageObject.addSecondArticleToMyList(name_of_folder);
         ArticlePageObject.closeArticle();
 
         NavigationUI NavigationUI = new NavigationUI(driver);
