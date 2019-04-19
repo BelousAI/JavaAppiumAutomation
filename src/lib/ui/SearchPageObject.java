@@ -10,6 +10,7 @@ public class SearchPageObject extends MainPageObject {
             SEARCH_INPUT = "//*[contains(@text, 'Search…')]",
             SEARCH_CANCEL_BUTTON = "org.wikipedia:id/search_close_btn",
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='{SUBSTRING}']",
+            SEARCH_RESULT_BY_TWO_SUBSTRINGS_TPL = "//*[@text='{SUBSTRING_1}']/following-sibling::android.widget.TextView[@text='{SUBSTRING_2}']",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']",
             SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']";
 
@@ -20,6 +21,12 @@ public class SearchPageObject extends MainPageObject {
     /* TEMPLATES METHODS */
     private String getResultSearchElement(String substring) {
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+    }
+
+    private String getResultSearchElement(String substring_1, String substring_2) {
+        return SEARCH_RESULT_BY_TWO_SUBSTRINGS_TPL
+                .replace("{SUBSTRING_1}", substring_1)
+                .replace("{SUBSTRING_2}", substring_2);
     }
     /* TEMPLATES METHODS */
 
@@ -47,6 +54,15 @@ public class SearchPageObject extends MainPageObject {
     public void waitForSearchResult(String substring) {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementPresent(By.xpath(search_result_xpath), "Cannot find search result with substring " + substring, 15);
+    }
+
+    public void waitForElementBycTitleAndDescription(String title, String description) {
+        String search_result_xpath = getResultSearchElement(title, description);
+        this.waitForElementPresent(
+                By.xpath(search_result_xpath),
+                "Cannot find search result with article title: " + title + " and description: " + description,
+                15
+        );
     }
 
     public void clickByArticleWithSubstring(String substring) {

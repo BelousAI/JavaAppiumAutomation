@@ -3,6 +3,7 @@ package tests;
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 public class SearchTests extends CoreTestCase {
 
@@ -49,5 +50,17 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.waitForEmptyResultsLabel();
         SearchPageObject.assertThereIsNoResultOfSearch();
+    }
+
+    @Test
+    public void testSearchByTitleAndDescription() {
+        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+
+        SearchPageObject.initSearchInput();
+        String search_line = "Yamaha";
+        SearchPageObject.typeSearchLine(search_line);
+        SearchPageObject.waitForElementBycTitleAndDescription("Yamaha Corporation", "Japanese multinational corporation and conglomerate");
+        SearchPageObject.waitForElementBycTitleAndDescription("Yamaha Motor Company", "Motorcycles manufacturer");
+        SearchPageObject.waitForElementBycTitleAndDescription("Yamaha YZF-R1", "Sport bike");
     }
 }
