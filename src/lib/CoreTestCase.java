@@ -2,6 +2,7 @@ package lib;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import junit.framework.TestCase;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -22,7 +23,7 @@ public class CoreTestCase extends TestCase {
         super.setUp();
 
         DesiredCapabilities capabilities = this.getCapabilitiesByPlatformEnv();
-        driver = new AndroidDriver(new URL(AppiumURL), capabilities);
+        driver = this.getDriverByPlatformEnv(new URL(AppiumURL), capabilities);
         this.rotateScreenPortrait();
     }
 
@@ -69,5 +70,19 @@ public class CoreTestCase extends TestCase {
         }
 
         return capabilities;
+    }
+
+    private AppiumDriver getDriverByPlatformEnv(URL url, DesiredCapabilities capabilities) throws Exception {
+        String platform = System.getenv("PLATFORM");
+
+        if (platform.equals(PLATFORM_ANDROID)) {
+            driver = new AndroidDriver(url, capabilities);
+        } else if (platform.equals(PLATFORM_IOS)) {
+            driver = new IOSDriver(url, capabilities);
+        } else {
+            throw new Exception("Cannot get appium driver from env variable. Platform value " + platform);
+        }
+
+        return driver;
     }
 }
