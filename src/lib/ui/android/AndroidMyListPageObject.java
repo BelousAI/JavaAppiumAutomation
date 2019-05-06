@@ -8,7 +8,6 @@ public class AndroidMyListPageObject extends MyListsPageObject {
     static {
         FOLDER_BY_NAME_TPL = "xpath://*[@text='{FOLDER_NAME}']";
         ARTICLE_BY_TITLE_TPL = "xpath://*[@text='{TITLE}']";
-        SAVED_ELEMENT = "id:org.wikipedia:id/page_list_item_container";
     }
 
     public AndroidMyListPageObject(AppiumDriver driver) {

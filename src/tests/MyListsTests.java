@@ -105,7 +105,7 @@ public class MyListsTests extends CoreTestCase {
 
         assertTrue(
                 "The number of remaining articles is not one.",
-                MyListsPageObject.getCountOfElements() == 1
+                SearchPageObject.getAmountOfFoundArticles() == 1
         );
     }
 }

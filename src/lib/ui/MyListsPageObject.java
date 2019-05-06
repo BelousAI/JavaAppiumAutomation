@@ -7,8 +7,7 @@ abstract public class MyListsPageObject extends MainPageObject {
 
     protected static String
             FOLDER_BY_NAME_TPL,
-            ARTICLE_BY_TITLE_TPL,
-            SAVED_ELEMENT;
+            ARTICLE_BY_TITLE_TPL;
 
     private static String getFolderXpathByName(String name_of_folder) {
         return FOLDER_BY_NAME_TPL.replace("{FOLDER_NAME}", name_of_folder);
@@ -63,9 +62,5 @@ abstract public class MyListsPageObject extends MainPageObject {
         }
 
         this.waitForArticleToDisappearByTitle(article_title);
-    }
-
-    public int getCountOfElements() {
-        return this.getAmountOfElements(SAVED_ELEMENT);
     }
 }
