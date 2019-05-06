@@ -14,7 +14,8 @@ abstract public class ArticlePageObject extends MainPageObject {
             ADD_TO_MY_LIST_OVERLAY,
             MY_LIST_NAME_INPUT,
             MY_LIST_OK_BUTTON,
-            CLOSE_ARTICLE_BUTTON;
+            CLOSE_ARTICLE_BUTTON,
+            CLOSE_SYNC_BUTTON;
 
 
     public ArticlePageObject(AppiumDriver driver) {
@@ -97,11 +98,32 @@ abstract public class ArticlePageObject extends MainPageObject {
                 5);
     }
 
+    public void addSecondArticleToMyList(String name_of_folder) {
+        this.waitForElementAndClick(
+                OPTIONS_BUTTON,
+                "Cannot find button to open article options",
+                5
+        );
+
+        this.waitForElementAndClick(
+                OPTIONS_ADD_TO_MY_LIST_BUTTON,
+                "Cannot find option to add article to reading list",
+                5
+        );
+    }
+
     public void closeArticle() {
         this.waitForElementAndClick(
                 CLOSE_ARTICLE_BUTTON,
                 "Cannot close article, cannot find X link",
                 5
         );
+    }
+
+    public void cancelSyncSavedArticles() {
+        this.waitForElementAndClick(
+                CLOSE_SYNC_BUTTON,
+                "Cannot cancel sync saved articles, cannot find X link",
+                5);
     }
 }

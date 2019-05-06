@@ -11,7 +11,6 @@ public class CoreTestCase extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
-
         super.setUp();
         driver = Platform.getInstance().getDriver();
         this.rotateScreenPortrait();
@@ -21,7 +20,6 @@ public class CoreTestCase extends TestCase {
     @Override
     protected void tearDown() throws Exception {
         driver.quit();
-
         super.tearDown();
     }
 
